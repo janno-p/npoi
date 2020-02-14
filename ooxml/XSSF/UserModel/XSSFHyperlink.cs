@@ -289,14 +289,14 @@ namespace NPOI.XSSF.UserModel
         }
 
 
-        private CellReference buildCellReference()
+        private CellRangeAddress buildCellRangeAddress()
         {
             String ref1 = _ctHyperlink.@ref;
             if (ref1 == null)
             {
                 ref1 = "A1";
             }
-            return new CellReference(ref1);
+            return CellRangeAddress.ValueOf(ref1);
         }
 
 
@@ -309,7 +309,7 @@ namespace NPOI.XSSF.UserModel
         {
             get
             {
-                return buildCellReference().Col;
+                return buildCellRangeAddress().FirstColumn;
             }
             set
             {
@@ -328,7 +328,7 @@ namespace NPOI.XSSF.UserModel
         {
             get
             {
-                return buildCellReference().Col;
+                return buildCellRangeAddress().LastColumn;
             }
             set
             {
@@ -345,7 +345,7 @@ namespace NPOI.XSSF.UserModel
         {
             get
             {
-                return buildCellReference().Row;
+                return buildCellRangeAddress().FirstRow;
             }
             set
             {
@@ -364,7 +364,7 @@ namespace NPOI.XSSF.UserModel
         {
             get
             {
-                return buildCellReference().Row;
+                return buildCellRangeAddress().LastRow;
             }
             set
             {

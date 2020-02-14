@@ -352,6 +352,21 @@ namespace TestCases.XSSF.UserModel
             wb.Close();
         }
 
+        [Test]
+        public void TestMergedCellWithHyperlink()
+        {
+            XSSFWorkbook wb1 = XSSFTestDataSamples.OpenSampleWorkbook("MergedCellWithHyperlink.xlsx");
+            XSSFSheet sh1 = wb1.GetSheetAt(0) as XSSFSheet;
+
+            XSSFHyperlink l1 = sh1.GetHyperlink(2, 1) as XSSFHyperlink;
+            Assert.AreEqual(HyperlinkType.Document, l1.Type);
+            Assert.AreEqual("B3:C5", l1.CellRef);
+            Assert.AreEqual("Merged Cell Link", l1.Label);
+            Assert.AreEqual(1, l1.FirstColumn);
+            Assert.AreEqual(2, l1.LastColumn);
+            Assert.AreEqual(2, l1.FirstRow);
+            Assert.AreEqual(4, l1.LastRow);
+        }
     }
 }
 

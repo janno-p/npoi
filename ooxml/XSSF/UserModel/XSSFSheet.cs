@@ -862,10 +862,10 @@ namespace NPOI.XSSF.UserModel
         /// <returns>return hyperlink if there is a hyperlink anchored at {@code addr}; otherwise returns {@code null}</returns>
         public IHyperlink GetHyperlink(CellAddress addr)
         {
-            String ref1 = addr.FormatAsString();
             foreach (XSSFHyperlink hyperlink in hyperlinks)
             {
-                if (hyperlink.CellRef.Equals(ref1))
+                CellRangeAddress range = CellRangeAddress.ValueOf(hyperlink.CellRef);
+                if (range.IsInRange(addr.Row, addr.Column))
                 {
                     return hyperlink;
                 }
